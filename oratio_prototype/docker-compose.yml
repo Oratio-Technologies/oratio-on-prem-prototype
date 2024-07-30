@@ -1,15 +1,52 @@
+# version: '3'
+# services:
+#   backend:
+#     build:
+#       context: ./backend
+#     ports:
+#       - "8080:8080"
+#     networks:
+#       - my-network
+
+#   frontend:
+#     build:
+#       context: ./ui
+#     ports:
+#       - "8501:8501"
+#     depends_on:
+#       - backend
+#     networks:
+#       - my-network
+
+# networks:
+#   my-network:
+#     driver: bridge
+
+
+
 version: '3.8'
+
 services:
   backend:
-    build: ./backend
+    image: oratio_prototype_backend
+    build:
+      context: ./backend
     ports:
-      - "8000:8080"
-    env_file:
-      - ./backend/.env
-    depends_on:
-      - ui
+      - "8080:8080"
+    networks:
+      - my-network
 
-  ui:
-    build: ./ui
+  frontend:
+    image: oratio_prototype_frontend
+    build:
+      context: ./ui
     ports:
       - "8501:8501"
+    depends_on:
+      - backend
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

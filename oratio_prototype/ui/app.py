@@ -31,7 +31,10 @@ if uploaded_file is not None:
     if st.button("Upload and Process PDF", help="Click to upload and process the PDF file."):
         with st.spinner("Processing..."):
             # Prepare the API request
-            url = "http://localhost:8080/process_pdf_file/"
+            #url = "http://localhost:8080/process_pdf_file/"
+            url = "http://backend:8080/process_pdf_file/"
+
+            
             files = {"file": (uploaded_file.name, file_bytes, "application/pdf")}
             
             # Send the request
