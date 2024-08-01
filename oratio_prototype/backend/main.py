@@ -4,33 +4,28 @@ from loguru import logger
 from io import BytesIO
 import os
 from datetime import datetime
-import fitz  # PyMuPDF
-from dotenv import load_dotenv, find_dotenv
 
-# Load environment variables
-load_dotenv(find_dotenv())
+from services.pdf_processing import extract_text_from_pdf
+
+from config import settings
+from db.documents import PdfDocument
+from db.mongo import connection
+
+
 
 # Initialize FastAPI
 app = FastAPI()
 
-password = os.environ.get("MONGODB_PWD")
-connection_string = f"mongodb+srv://zoldyck:{password}@cluster0.kjantw5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-client = MongoClient(connection_string)
-production = client.production
+_database = connection.get_database("production") #Get the database instance (weird function, you have to pass an argument but in the implemnation it doesn't require)
+#collection = _database["pdf_documents"]  #pdf_documents
 
 
-def extract_text_from_pdf(pdf_path: str) -> str:
-    """Extracts text from a PDF file using fitz (PyMuPDF)."""
-    try:
-        pdf_document = fitz.open(pdf_path)
-        text = ""
-        for page_num in range(pdf_document.page_count):
-            page = pdf_document.load_page(page_num)
-            text += page.get_text()
-        return text
-    except Exception as e:
-        return str(e)
+
+# client = MongoClient(settings.MONGO_DATABASE_HOST)
+# production = client[settings.MONGO_DATABASE_NAME]
+
+
+
 
 @app.post("/process_pdf_file/")
 async def process_pdf_file(file: UploadFile = File(...)):
@@ -43,15 +38,19 @@ async def process_pdf_file(file: UploadFile = File(...)):
 
     # Extract text using fitz
     extracted_text = extract_text_from_pdf(file_path)
+    
+    document = PdfDocument(
+        source=file.filename,
+        extracted_text=extracted_text,
+        upload_date=datetime.utcnow().isoformat()
+    )
 
-    # Save extracted text to MongoDB
-    document = {
-        "source": file.filename,
-        "extracted_text": extracted_text,
-        "upload_date": datetime.now()
-    }
 
-    extracted_text_collection = production.extracted_texts
-    inserted_extracted_text = extracted_text_collection.insert_one(document).inserted_id
+    # collection = _database[document._get_collection_name()]
+    # result = collection.insert_one(document.to_mongo())
+    
 
-    return {"status": "Processing completed", "text": extracted_text, "id": str(inserted_extracted_text)}
+    result = document.save()
+    
+    
+    return {"status": "success", "id": str(result)}

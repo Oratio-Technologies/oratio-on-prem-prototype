@@ -1,4 +1,4 @@
-# Use the official Python image
+# Use the official Python image with version 3.10
 FROM python:3.10-slim AS base
 
 # Set working directory
@@ -8,13 +8,13 @@ WORKDIR /app
 RUN pip install --no-cache-dir poetry
 
 # Copy dependency files
-COPY pyproject.toml poetry.lock* /app/
+COPY backend/pyproject.toml backend/poetry.lock* /app/
 
 # Install dependencies
-RUN poetry install --no-root --no-dev
+RUN poetry install --only main
 
-# Copy the application code
-COPY . /app
+# Copy the application code from the backend directory
+COPY backend /app
 
 # Expose the port FastAPI is running on
 EXPOSE 8080
