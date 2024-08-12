@@ -122,6 +122,7 @@ class BaseDocument(BaseModel):
 class PdfDocument(BaseDocument):
     source: str
     extracted_text: str
+    upload_date: datetime
     num_pages: Optional[int] 
     
     class Settings:

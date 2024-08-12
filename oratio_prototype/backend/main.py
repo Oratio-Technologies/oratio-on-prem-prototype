@@ -16,14 +16,7 @@ from db.mongo import connection
 # Initialize FastAPI
 app = FastAPI()
 
-_database = connection.get_database("production") #Get the database instance (weird function, you have to pass an argument but in the implemnation it doesn't require)
-#collection = _database["pdf_documents"]  #pdf_documents
-
-
-
-# client = MongoClient(settings.MONGO_DATABASE_HOST)
-# production = client[settings.MONGO_DATABASE_NAME]
-
+# _database = connection.get_database("production") #Get the database instance (weird function, you have to pass an argument but in the implemnation it doesn't require)
 
 
 
@@ -44,11 +37,6 @@ async def process_pdf_file(file: UploadFile = File(...)):
         extracted_text=extracted_text,
         upload_date=datetime.utcnow().isoformat()
     )
-
-
-    # collection = _database[document._get_collection_name()]
-    # result = collection.insert_one(document.to_mongo())
-    
 
     result = document.save()
     
