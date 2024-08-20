@@ -122,7 +122,6 @@ services:
     depends_on:
       - qdrant
 
-
   ui_service:
     image: oratio_prototype_ui_service
     build:
