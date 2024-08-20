@@ -112,6 +112,27 @@ services:
       - qdrant
     restart: on-failure
 
+  inference:
+    image: oratio_prototype_inference
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.inference
+    ports:
+      - "8000:8000"
+    depends_on:
+      - qdrant
+
+
+  ui_service:
+    image: oratio_prototype_ui_service
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.ui_service
+    ports:
+      - "8500:8500"
+    depends_on:
+      - inference
+
 volumes:
   mongo-replica-1-data:
   mongo-replica-2-data:
