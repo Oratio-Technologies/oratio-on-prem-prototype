@@ -18,11 +18,11 @@ class Settings:
     RABBITMQ_DEFAULT_USERNAME: str = "guest"
     RABBITMQ_DEFAULT_PASSWORD: str = "guest"
     RABBITMQ_QUEUE_NAME: str = "default"
-    RABBITMQ_HOST: str = "mq" # or localhost if running outside Docker
-    RABBITMQ_PORT: int = 5672
+    # RABBITMQ_HOST: str = "mq" # or localhost if running outside Docker
+    # RABBITMQ_PORT: int = 5672
     
-    # RABBITMQ_PORT: int = 5673 # running bytewax pipeline from localhost(we should use 5673 port here)
-    # RABBITMQ_HOST: str = "localhost"
+    RABBITMQ_PORT: int = 5673 # running bytewax pipeline from localhost(we should use 5673 port here)
+    RABBITMQ_HOST: str = "localhost"
 
     # QdrantDB config
     QDRANT_DATABASE_PORT: int = 6333
@@ -30,8 +30,8 @@ class Settings:
     QDRANT_CLOUD_URL: str | None = None
     QDRANT_APIKEY: str | None = None
     
-    QDRANT_DATABASE_HOST: str = "qdrant" # or localhost if running outside Docker
-    # QDRANT_DATABASE_HOST="localhost"
+    # QDRANT_DATABASE_HOST: str = "qdrant" # or localhost if running outside Docker
+    QDRANT_DATABASE_HOST="localhost"
 
 
 settings = Settings()

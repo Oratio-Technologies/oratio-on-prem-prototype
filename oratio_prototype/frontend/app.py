@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
 from io import BytesIO
+from config import settings
+
+
 
 st.set_page_config(page_title="PDF Uploader", page_icon="📄")
 
@@ -30,9 +33,10 @@ if uploaded_file is not None:
     # Trigger the backend API
     if st.button("Upload and Process PDF", help="Click to upload and process the PDF file."):
         with st.spinner("Processing..."):
+            
             # Prepare the API request
-            # url = "http://localhost:8080/process_pdf_file/"
-            url = "http://backend:8080/process_pdf_file/"
+            # url = settings.LOCAL_BACKEND_SERVICE_URL
+            url = settings.BACKEND_SERVICE_URL
 
             
             files = {"file": (uploaded_file.name, file_bytes, "application/pdf")}
