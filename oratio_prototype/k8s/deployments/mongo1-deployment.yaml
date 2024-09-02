@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+      role: replica1
+  template:
+    metadata:
+      labels:
+        app: mongo
+        role: replica1
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:5
+        command: ["mongod", "--replSet", "my-replica-set", "--bind_ip_all", "--port", "30001"]
+        ports:
+        - containerPort: 30001
+        volumeMounts:
+        - name: mongo-replica-1-data
+          mountPath: /data/db
+      volumes:
+      - name: mongo-replica-1-data
+        persistentVolumeClaim:
+          claimName: mongo-replica-1-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo1
+spec:
+  ports:
+  - port: 30001
+    targetPort: 30001
+  selector:
+    app: mongo
+    role: replica1

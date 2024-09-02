@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+      role: replica2
+  template:
+    metadata:
+      labels:
+        app: mongo
+        role: replica2
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:5
+        command: ["mongod", "--replSet", "my-replica-set", "--bind_ip_all", "--port", "30002"]
+        ports:
+        - containerPort: 30002
+        volumeMounts:
+        - name: mongo-replica-2-data
+          mountPath: /data/db
+      volumes:
+      - name: mongo-replica-2-data
+        persistentVolumeClaim:
+          claimName: mongo-replica-2-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo2
+spec:
+  ports:
+  - port: 30002
+    targetPort: 30002
+  selector:
+    app: mongo
+    role: replica2
