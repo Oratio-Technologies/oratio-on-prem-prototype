@@ -5,17 +5,18 @@ from llm.prompt_templates import InferenceTemplate
 from rag.retriever import VectorRetriever
 from settings import settings
 
-from evaluation import evaluate_llm
+from evaluation.model import evaluate_llm
 from evaluation.rag import evaluate_w_ragas
+
+from app.llama2 import llm_pipeline
+
 
 from monitoring import PromptMonitoringManager
 
 
-class LLMTwin:
+class RAGEvaluator:
     def __init__(self) -> None:
-        # self.qwak_client = RealTimeClient(
-        #     model_id=settings.QWAK_DEPLOYMENT_MODEL_ID,
-        # )
+        # self.qwak_client = llm_pipeline #response = llm_pipeline(pipeline_input)
         self.template = InferenceTemplate()
         self.prompt_monitoring_manager = PromptMonitoringManager()
         self._timings = {
@@ -51,7 +52,9 @@ class LLMTwin:
         st_time = time.time_ns()
         input_ = pd.DataFrame([{"instruction": prompt}]).to_json()
 
-        # response: list[dict] = self.qwak_client.predict(input_)
+        response = llm_pipeline(input_)
+        
+        #here you have to pay attention
         answer = response[0]["content"]
         en_time = time.time_ns()
         self._timings["generation"] = (en_time - st_time) / 1e9

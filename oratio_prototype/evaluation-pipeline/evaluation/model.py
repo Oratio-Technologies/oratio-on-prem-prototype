@@ -5,7 +5,7 @@ from llm.prompt_templates import LLMEvaluationTemplate
 from settings import settings
 
 
-def evaluate(query: str, output: str) -> str:
+def evaluate_llm(query: str, output: str) -> str:
     evaluation_template = LLMEvaluationTemplate()
     prompt_template = evaluation_template.create_template()
 
