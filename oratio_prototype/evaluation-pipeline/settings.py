@@ -37,7 +37,7 @@ class AppSettings(BaseSettings):
     # LLM Model config
     TOKENIZERS_PARALLELISM: str = "false"
     HUGGINGFACE_ACCESS_TOKEN: str | None = None
-    # MODEL_TYPE: str = "mistralai/Mistral-7B-Instruct-v0.1"
+    MODEL_TYPE: str = "Meta/Llama2"
 
     # RAG config
     TOP_K: int = 3
