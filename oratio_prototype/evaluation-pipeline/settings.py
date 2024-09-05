@@ -19,20 +19,20 @@ class AppSettings(BaseSettings):
     QDRANT_DATABASE_PORT: int = 6333
     QDRANT_DATABASE_URL: str = "http://localhost:6333"
 
-    QDRANT_CLOUD_URL: str = "str"
-    USE_QDRANT_CLOUD: bool = False
-    QDRANT_APIKEY: str | None = None
+    # QDRANT_CLOUD_URL: str = "str"
+    # USE_QDRANT_CLOUD: bool = False
+    # QDRANT_APIKEY: str | None = None
 
     # MQ config
-    RABBITMQ_DEFAULT_USERNAME: str = "guest"
-    RABBITMQ_DEFAULT_PASSWORD: str = "guest"
-    RABBITMQ_HOST: str = "localhost"
-    RABBITMQ_PORT: int = 5673
+    # RABBITMQ_DEFAULT_USERNAME: str = "guest"
+    # RABBITMQ_DEFAULT_PASSWORD: str = "guest"
+    # RABBITMQ_HOST: str = "localhost"
+    # RABBITMQ_PORT: int = 5673
 
     # CometML config
-    COMET_API_KEY: str
-    COMET_WORKSPACE: str
-    COMET_PROJECT: str = "???????"
+    COMET_API_KEY: str = "Gm9kfXOp6BN3RWiTTOxYJMy3l"
+    COMET_WORKSPACE: str ="mohamedayari1"
+    COMET_PROJECT: str = "oratio-inference-pipeline-prototype"
 
     # LLM Model config
     TOKENIZERS_PARALLELISM: str = "false"
