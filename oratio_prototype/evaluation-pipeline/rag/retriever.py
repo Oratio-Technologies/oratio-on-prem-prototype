@@ -4,7 +4,7 @@ from db import QdrantDatabaseConnector
 from sentence_transformers.SentenceTransformer import SentenceTransformer
 
 import utils
-from config import settings
+from settings import settings
 
 
 from utils.logging import get_logger
