@@ -14,7 +14,7 @@ COPY ../backend/pyproject.toml ../backend/poetry.lock* /app/
 RUN poetry install --only main
 
 # Copy the application code from the backend directory
-COPY ../backend /app
+COPY ../etl-backend /app
 
 # Expose the port FastAPI is running on
 EXPOSE 8080

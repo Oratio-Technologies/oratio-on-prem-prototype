@@ -1,13 +1,10 @@
 import uuid
 from typing import List, Optional
-
 from errors import ImproperlyConfigured
 from pydantic import BaseModel, Field, UUID4, ConfigDict
 from pymongo import errors
 from utils import get_logger
-
 from datetime import datetime
-
 from db.mongo import connection
 
 
@@ -126,3 +123,7 @@ class PdfDocument(BaseDocument):
     
     class Settings:
         name = "pdf_documents"
+        
+        
+# class ImageDocument(BaseDocument):
+#     pass

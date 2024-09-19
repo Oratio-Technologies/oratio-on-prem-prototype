@@ -45,4 +45,11 @@ class AppSettings(BaseSettings):
     EXPAND_N_QUERY: int = 3
 
 
+
+    AZURE_OPENAI_API_KEY: str = "9f9e3951045f4274b63e1daf2fbcf1b0"
+    AZURE_OPENAI_ENDPOINT: str = "https://oratioaihubala0195041921.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2023-03-15-preview"
+    OPENAI_API_VERSION: str = "2023-03-15-preview"
+
+
+
 settings = AppSettings()

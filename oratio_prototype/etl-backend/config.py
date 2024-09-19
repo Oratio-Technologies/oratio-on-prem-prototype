@@ -7,7 +7,7 @@ load_dotenv(find_dotenv())
 
 
 class Settings:
-    MONGODB_PWD = os.getenv("MONGODB_PWD")
+    # MONGODB_PWD = os.getenv("MONGODB_PWD")
     # MONGO_DATABASE_HOST = f"mongodb+srv://zoldyck:{MONGODB_PWD}@cluster0.kjantw5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
     #model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")

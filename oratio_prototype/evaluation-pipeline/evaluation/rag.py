@@ -78,3 +78,21 @@ def evaluate_w_ragas(query: str, context: list[str], output: str) -> DataFrame:
     )
 
     return score
+
+
+from ragas.metrics import (
+    context_precision,
+    answer_relevancy,
+    faithfulness,
+    context_recall,
+)
+from ragas.metrics.critique import harmfulness
+
+# list of metrics we're going to use
+metrics = [
+    faithfulness,
+    answer_relevancy,
+    context_recall,
+    context_precision,
+    harmfulness,
+]

@@ -61,11 +61,11 @@ services:
       - qdrant-data:/qdrant_data
     restart: always
 
-  backend:
-    image: oratio_prototype_backend
+  etl-backend:
+    image: oratio_prototype_etl_backend
     build:
       context: .
-      dockerfile: .docker/Dockerfile.backend
+      dockerfile: .docker/Dockerfile.etl-backend
     ports:
       - "8080:8080"
     depends_on:
