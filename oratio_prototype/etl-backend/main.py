@@ -30,15 +30,17 @@ async def process_pdf_file(file: UploadFile = File(...)):
         f.write(contents)
 
     # Extract text using fitz
-    extracted_text = extract_text_from_pdf(file_path)
+    number_of_pages, chunks = extract_text_from_pdf(file_path)
     
-    document = PdfDocument(
-        source=file.filename,
-        extracted_text=extracted_text,
-        upload_date=datetime.utcnow().isoformat()
-    )
+    for extracted_text in chunks:
+        
+        document = PdfDocument(
+            extracted_text=extracted_text,
+            source=file.filename,
+            num_pages = number_of_pages
+        )
 
-    result = document.save()
-    
+        result = document.save()
+        
     
     return {"status": "success", "id": str(result)}

@@ -117,8 +117,8 @@ class BaseDocument(BaseModel):
 
 
 class PdfDocument(BaseDocument):
-    source: str
     extracted_text: str
+    source: str
     num_pages: Optional[int] 
     
     class Settings:

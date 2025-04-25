@@ -35,8 +35,8 @@ if uploaded_file is not None:
         with st.spinner("Processing..."):
             
             # Prepare the API request
-            # url = settings.LOCAL_BACKEND_SERVICE_URL
-            url = settings.BACKEND_SERVICE_URL
+            url = "http://localhost:8000/process_pdf_file/"
+            # url = settings.BACKEND_SERVICE_URL
 
             
             files = {"file": (uploaded_file.name, file_bytes, "application/pdf")}

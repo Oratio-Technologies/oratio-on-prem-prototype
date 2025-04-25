@@ -7,7 +7,7 @@ class Settings:
     # Embeddings config
     EMBEDDING_MODEL_ID: str = "sentence-transformers/all-MiniLM-L6-v2"
     EMBEDDING_MODEL_MAX_INPUT_LENGTH: int = 256
-    EMBEDDING_SIZE: int = 384
+    EMBEDDING_SIZE: int = 3072
     EMBEDDING_MODEL_DEVICE: str = "cpu"
 
     # OpenAI
@@ -31,7 +31,7 @@ class Settings:
     QDRANT_APIKEY: str | None = None
     
     # QDRANT_DATABASE_HOST: str = "qdrant" # or localhost if running outside Docker
-    QDRANT_DATABASE_HOST="localhost"
+    QDRANT_DATABASE_HOST="72.144.114.98"
 
 
 settings = Settings()
