@@ -174,4 +174,3 @@ mistral_instruct_generation
 cache
 rabbitmq
 
-backend/uv.lock
