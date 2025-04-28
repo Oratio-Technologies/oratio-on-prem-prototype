@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase';
 // const baseURL = 'http://9.141.184.18:8000';
 // In your frontend API client configuration
 
+
 const baseURL = 'http://131.189.216.19:8000';
 // const baseURL = 'https://chat.oratiotechnologies.com';
 const defaultHeaders = {
