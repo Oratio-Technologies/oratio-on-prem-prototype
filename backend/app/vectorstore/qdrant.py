@@ -6,13 +6,13 @@ from qdrant_client import QdrantClient, models
 from qdrant_client.http.exceptions import UnexpectedResponse
 from qdrant_client.http.models import Batch, Distance, VectorParams
 
-from vectorstore.base import BaseVectorStore
+from app.vectorstore.base import BaseVectorStore
 
-from utils.embeddings import get_embedding_3_large_simple
+from app.utils.embeddings import get_embedding_3_large_simple
 
-from utils.helpers import flatten
+from app.utils.helpers import flatten
 
-from utils.custom_logging import get_logger
+from app.utils.custom_logging import get_logger
 
 logger = get_logger(__name__)
 

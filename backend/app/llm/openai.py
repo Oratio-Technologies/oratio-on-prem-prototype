@@ -1,5 +1,5 @@
-from app.llm.base import BaseLLM
 from openai import AzureOpenAI
+from app.llm.base import BaseLLM
 from app.core.config import azure_settings
 
 class OpenAILLM(BaseLLM):

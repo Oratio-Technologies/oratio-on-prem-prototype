@@ -1,8 +1,9 @@
 # schemas/answer.py
-from schemas.base import Source
 from typing import List, Optional, Union
 from pydantic import BaseModel, Field, validator
 import json
+
+from app.schemas.base import Source
 
 class AnswerRequest(BaseModel):
     question: str = Field(..., description="The question to answer")

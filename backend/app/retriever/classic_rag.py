@@ -1,9 +1,9 @@
-from retriever.base import BaseRetriever
-from vectorstore.qdrant import VectorRetriever
-from llm.openai import OpenAILLM
+from app.retriever.base import BaseRetriever
+from app.vectorstore.qdrant import VectorRetriever
+from app.llm.openai import OpenAILLM
 
 
-from utils.custom_logging import get_logger
+from app.utils.custom_logging import get_logger
 
 logger = get_logger("classic_rag")
 
