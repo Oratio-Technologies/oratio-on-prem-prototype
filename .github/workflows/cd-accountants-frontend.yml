@@ -3,7 +3,7 @@ name: Deploy to PROD AKS Cluster
 on:
   push:
     branches:
-      - develop
+      - dev
 
 jobs:
   build:
@@ -21,8 +21,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.ACR_URL }}/frontendaks:${{ github.run_id }} -f .docker/Dockerfile.nginxfrontend .
-          docker push ${{ secrets.ACR_URL }}/frontendaks:${{ github.run_id }}
+          docker build -t ${{ secrets.ACR_URL }}/accountants-frontendaks:${{ github.run_id }} -f .docker/Dockerfile.nginxfrontend .
+          docker push ${{ secrets.ACR_URL }}/accountants-frontendaks:${{ github.run_id }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,10 +48,10 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          sed -i 's|IMAGE_PLACEHOLDER|${{ secrets.ACR_URL }}/frontendaks:${{ github.run_id }}|' infra/k8s/frontend-deployment.yml
-          kubectl apply -f infra/k8s/frontend-deployment.yml -n ingress-basic-lawchatbot-namespace
+          sed -i 's|IMAGE_PLACEHOLDER|${{ secrets.ACR_URL }}/accountants-frontendaks:${{ github.run_id }}|' infra/k8s/frontend-deployment.yml
+          kubectl apply -f infra/k8s/frontend-deployment.yml 
 
       - name: Verify Deployment
         run: |
-          kubectl get services  -n ingress-basic-lawchatbot-namespace
-          kubectl get pods  -n ingress-basic-lawchatbot-namespace
+          kubectl get services 
+          kubectl get pods  

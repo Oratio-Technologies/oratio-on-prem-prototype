@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+        - name: acr-auth
+      containers:
+        - name: backend
+          image: IMAGE_PLACEHOLDER
+          ports:
+            - containerPort: 8000
+
+          # env:
+          #   - name: USE_QDRANT_CLOUD
+          #     value: "true"
+          #   - name: QDRANT_CLOUD_URL
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: app-secrets
+          #         key: QDRANT_CLOUD_URL
+          #   - name: QDRANT_APIKEY
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: app-secrets
+          #         key: QDRANT_APIKEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - port: 8000
+      targetPort: 8000
