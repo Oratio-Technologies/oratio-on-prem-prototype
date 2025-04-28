@@ -1,0 +1,133 @@
+{
+  "language": "Deutsch",
+  "chat": "Chat",
+  "chats": "Chats",
+  "newChat": "Neuer Chat",
+  "myPlan": "Mein Plan",
+  "about": "Über",
+  "inputPlaceholder": "Geben Sie hier Ihre Nachricht ein...",
+  "tagline": "Oratio verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen.",
+  "sourceDocs": "Quelle",
+  "none": "Keine",
+  "cancel": "Abbrechen",
+  "help": "Hilfe",
+  "emailUs": "E-Mail an uns",
+  "documentation": "Dokumentation",
+  "demo": [
+    {
+      "header": "⚠ Beta-Version: Dieser Chatbot befindet sich noch in der Beta-Testphase.",
+      "query": "Was ist Oratio?"
+    },
+    {
+      "header": "⚠ Haftungsausschluss Keine Rechtsberatung: Oratio ist eine KI und bietet keine Rechtsberatung. Wenn Sie rechtliche Hilfe benötigen, wenden Sie sich bitte an einen Anwalt.",
+      "query": "Fassen Sie den aktuellen Kontext zusammen"
+    }
+  ],
+  "settings": {
+    "label": "Einstellungen",
+    "general": {
+      "label": "Allgemein",
+      "selectTheme": "Thema auswählen",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "selectLanguage": "Sprache auswählen",
+      "chunks": "Chunks pro Abfrage verarbeitet",
+      "prompt": "Aktiver Prompt",
+      "deleteAllLabel": "Alle Unterhaltungen löschen",
+      "deleteAllBtn": "Alle löschen",
+      "addNew": "Neu hinzufügen",
+      "convHistory": "Konversationsverlauf",
+      "none": "Keine",
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "unlimited": "Unbegrenzt",
+      "default": "Standard"
+    },
+    "documents": {
+      "label": "Dokumente",
+      "name": "Dokumentname",
+      "date": "Vektordatum",
+      "type": "Typ",
+      "tokenUsage": "Token-Verbrauch",
+      "noData": "Keine vorhandenen Dokumente"
+    },
+    "apiKeys": {
+      "label": "Chatbots",
+      "name": "Name",
+      "key": "API-Schlüssel",
+      "sourceDoc": "Quellendokument",
+      "createNew": "Neu erstellen",
+      "noData": "Keine vorhandenen Chatbots"
+    },
+    "analytics": {
+      "label": "Analytik"
+    },
+    "logs": {
+      "label": "Protokolle"
+    }
+  },
+  "modals": {
+    "uploadDoc": {
+      "label": "Neue Dokumentation hochladen",
+      "select": "Wählen Sie aus, wie Sie Ihr Dokument in Oratio hochladen möchten",
+      "file": "Vom Gerät hochladen",
+      "back": "Zurück",
+      "wait": "Bitte warten ...",
+      "remote": "Von einer Website sammeln",
+      "start": "Chatten starten",
+      "name": "Name",
+      "choose": "Dateien auswählen",
+      "info": "Bitte laden Sie .pdf, .txt, .rst, .csv, .xlsx, .docx, .md, .html, .epub, .json, .pptx, .zip mit maximal 25 MB hoch",
+      "uploadedFiles": "Hochgeladene Dateien",
+      "cancel": "Abbrechen",
+      "train": "Trainieren",
+      "link": "Link",
+      "urlLink": "URL-Link",
+      "repoUrl": "Repository-URL",
+      "reddit": {
+        "id": "Client-ID",
+        "secret": "Client-Geheimnis",
+        "agent": "Benutzeragent",
+        "searchQueries": "Suchanfragen",
+        "numberOfPosts": "Anzahl der Beiträge"
+      }
+    },
+    "createAPIKey": {
+      "label": "Neuen API-Schlüssel erstellen",
+      "apiKeyName": "API-Schlüsselname",
+      "chunks": "Chunks pro Abfrage verarbeitet",
+      "prompt": "Aktiven Prompt auswählen",
+      "sourceDoc": "Quellendokument",
+      "create": "Erstellen"
+    },
+    "saveKey": {
+      "note": "Bitte speichern Sie Ihren Schlüssel",
+      "disclaimer": "Dies ist das einzige Mal, dass Ihr Schlüssel angezeigt wird.",
+      "copy": "Kopieren",
+      "copied": "Kopiert",
+      "confirm": "Ich habe den Schlüssel gespeichert"
+    },
+    "deleteConv": {
+      "confirm": "Sind Sie sicher, dass Sie alle Unterhaltungen löschen möchten?",
+      "delete": "Löschen"
+    },
+    "shareConv": {
+      "label": "Eine öffentliche Seite zum Teilen erstellen",
+      "note": "Quellendokument, persönliche Informationen und weitere Unterhaltungen bleiben privat",
+      "create": "Erstellen",
+      "option": "Benutzern erlauben, weiter zu fragen"
+    }
+  },
+  "sharedConv": {
+    "subtitle": "Erstellt mit",
+    "button": "Starten Sie mit Oratio",
+    "meta": "Oratio verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen."
+  },
+  "convTile": {
+    "share": "Teilen",
+    "delete": "Löschen",
+    "rename": "Umbenennen",
+    "deleteWarning": "Sind Sie sicher, dass Sie diese Unterhaltung löschen möchten?"
+  }
+}
