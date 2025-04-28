@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, UUID4, ConfigDict
 from pymongo import errors
 from utils import get_logger
 from datetime import datetime
-from db.mongo import connection
+from mongo import connection
 
 
 _database = connection.get_database("production") #Get the database instance (weird function, you have to pass an argument but in the implemnation it doesn't require)

@@ -8,8 +8,10 @@ from datetime import datetime
 from services.pdf_processing import extract_text_from_pdf
 
 from config import settings
-from db.documents import PdfDocument
-from db.mongo import connection
+
+
+from documents import PdfDocument
+from mongo import connection
 
 
 

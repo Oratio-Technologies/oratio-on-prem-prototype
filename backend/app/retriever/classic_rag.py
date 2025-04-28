@@ -16,7 +16,7 @@ class AccountantsRAG(BaseRetriever):
     # source,
     chat_history,
     prompt,
-    chunks=9,
+    chunks=18,
     token_limit=150,
     # gpt_model="docsgpt",
     # user_api_key=None,
