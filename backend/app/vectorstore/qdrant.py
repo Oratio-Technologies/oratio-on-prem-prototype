@@ -7,13 +7,12 @@ from qdrant_client.http.exceptions import UnexpectedResponse
 from qdrant_client.http.models import Batch, Distance, VectorParams
 
 from vectorstore.base import BaseVectorStore
-from utils.embeddings import embed_german_text
 
 from utils.embeddings import get_embedding_3_large_simple
 
 from utils.helpers import flatten
 
-from utils.logging import get_logger
+from utils.custom_logging import get_logger
 
 logger = get_logger(__name__)
 

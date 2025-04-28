@@ -4,14 +4,14 @@ import logging
 from fastapi import APIRouter, HTTPException, Depends, Request
 
 # from app.dependencies.auth import verify_jwt
-from app.schemas.answer import AnswerRequest, AnswerResponse, Source
+from schemas.answer import AnswerRequest, AnswerResponse, Source
 # from app.schemas.token import TokenUsage
 # from app.retriever.rag import LLMOnly
 # from app.core.mongo import MongoDB
 # from app.dependencies.db import save_conversation
 # from app.dependencies.token import verify_token_usage, TokenUsage
 
-from app.retriever.classic_rag import ClassicRAG
+from retriever.classic_rag import AccountantsRAG
 
 
 # Initialize logger
@@ -43,19 +43,19 @@ async def answer_endpoint(
     # user = Depends(verify_jwt)
 ):
     try:
-        # Count input tokens before processing
-        token_manager = request.state.token_manager
-        input_tokens = token_manager.count_tokens(answer_request.question)
+        # # Count input tokens before processing
+        # token_manager = request.state.token_manager
+        # input_tokens = token_manager.count_tokens(answer_request.question)
         
-        # Check if we can process this many input tokens
-        await token_manager.check_limits(
-            request.state.token_usage,
-            input_tokens=input_tokens,
-            output_tokens=0  # We don't know output tokens yet
-        )
+        # # Check if we can process this many input tokens
+        # await token_manager.check_limits(
+        #     request.state.token_usage,
+        #     input_tokens=input_tokens,
+        #     output_tokens=0  # We don't know output tokens yet
+        # )
         
         # Get the answer
-        retriever = ClassicRAG(
+        retriever = AccountantsRAG(
             question=answer_request.question,
             chat_history=answer_request.history,
             prompt=CHAT_COMBINE

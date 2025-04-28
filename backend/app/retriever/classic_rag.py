@@ -3,14 +3,13 @@ from vectorstore.qdrant import VectorRetriever
 from llm.openai import OpenAILLM
 
 
-from utils.logging import get_logger
+from utils.custom_logging import get_logger
 
-from app.retriever.query_expansion import query_expansion, docs_reranker
 logger = get_logger("classic_rag")
 
 
 
-class ClassicRAG(BaseRetriever):
+class AccountantsRAG(BaseRetriever):
     def __init__(
     self,
     question,
@@ -22,8 +21,8 @@ class ClassicRAG(BaseRetriever):
     # gpt_model="docsgpt",
     # user_api_key=None,
     ):
-        # self.vectorstore = source["active_docs"] if "active_docs" in source else None
         self.question = question
+        # self.vectorstore = source["active_docs"] if "active_docs" in source else None
         self.chat_history = chat_history
         self.prompt = prompt
         self.chunks = chunks
@@ -41,62 +40,26 @@ class ClassicRAG(BaseRetriever):
         
         # self.user_api_key = user_api_key
         
-    async def _get_data(self, query):
+    async def _get_data(self):
         if self.chunks == 0:
             return []
         
         retriever = VectorRetriever()
-        docs_temp = retriever.search(query, k=self.chunks)
+        docs_temp = retriever.search(self.question, k=self.chunks)
         
         docs = [
             {
-                # "title": doc.payload.get("platform", "Untitled").split("/")[-1],
-                "title": doc.payload.get("section_title", "Untitled"),
-                # "text": doc.payload.get("content", ""),
-                "text": doc.payload.get("section_german_content", ""),
-                "source": doc.payload.get("law_link", "local"),
+                "title": doc.payload.get("platform", "Untitled").split("/")[-1],
+                "text": doc.payload.get("content", ""),
+                "source": doc.payload.get("link", "local"),
             }
             for doc in docs_temp
         ]
         return docs
-
-  
     
     async def gen(self):
-        # docs = await self._get_data(self.question)
-  
-        docs = []
-        list_query_expansion = query_expansion(self.question, 5, "|||")
-        
-        for i, query in enumerate(list_query_expansion):
-            expansion_docs = await self._get_data(query)
-            docs.extend(expansion_docs)
-        
-        # Convert docs to text format for reranking
-        docs_text = [doc["text"] for doc in docs]
-        logger.info(f"Original docs count: {len(docs_text)}")
-        
-        reranked_texts = docs_reranker(self.question, "|||", docs_text)
-        logger.info(f"Reranked texts received: {len(reranked_texts)}")
-        
-        # # Map reranked texts back to full documents - with more robust matching
-        reranked_docs = []
-        for text in reranked_texts:
-            if not text.strip():  # Skip empty strings
-                continue
-            # Try to find matching document
-            for doc in docs:
-                if text.strip() == doc["text"].strip():  # Use exact matching
-                    reranked_docs.append(doc)
-                    break
-        
-        # logger.info(f"Successfully mapped docs: {len(reranked_docs)}")
-        
-        if not reranked_docs:  # Fallback if no matches found
-            logger.info("No matches found, using original docs")
-            reranked_docs = docs  # Use all original docs as fallback
-        
-        docs_together = "\n\n\n".join([doc["text"] for doc in reranked_docs])
+        docs = await self._get_data()
+        docs_together = "\n".join([doc["text"] for doc in docs])
         p_chat_combine = self.prompt.replace("{summaries}", docs_together)
         messages_combine = [{"role": "system", "content": p_chat_combine}]
         
@@ -111,18 +74,16 @@ class ClassicRAG(BaseRetriever):
         #         ])
 
         messages_combine.append({"role": "user", "content": self.question})
-        
-        # logger.info(f"messages_combine: {messages_combine[:-2]}")
-        
+        logger.info(f"messages_combine: {messages_combine[:-2]}")
         llm = OpenAILLM()
         
+        # llm = GoogleLLM()
+        # google_completion = llm.gen(messages=messages_combine[:-2])
+        # print(google_completion)
+        # print("\n\n")
 
-
-        completion = llm.gen(model="chat", messages=messages_combine[:-2])
+        completion = llm.gen(model="chat", messages=messages_combine)
         print(completion)
         print("\n\n")
 
-        docs = reranked_docs
-
         return completion, docs
-
