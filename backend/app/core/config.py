@@ -56,7 +56,7 @@ class QdrantSettings(Settings):
     QDRANT_CLOUD_URL: Optional[str] = None
     QDRANT_APIKEY: Optional[str] = None
     EMBEDDING_SIZE: int = 3072
-    QDRANT_COLLECTION_NAME: str = "vector_translated_legal_sections"
+    QDRANT_COLLECTION_NAME: str = "vector_pdfs"
 
 class GoogleSettings(Settings):
     GOOGLE_API_KEY: str = "AIzaSyATj8Clioh6EYXoTzy5WwNVHW5mbLxHw0s"
