@@ -10,10 +10,10 @@ import './locale/i18n';
 import { Outlet } from 'react-router-dom';
 import { SharedConversation } from './conversation/SharedConversation';
 import { useDarkTheme } from './hooks';
-import Auth from './pages/Auth';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { supabase } from './lib/supabase'; // Import your existing supabase client
-import { ProtectedRoute } from './components/ProtectedRoute';
+// import Auth from './pages/Auth';
+// import { ProtectedRoute } from './components/ProtectedRoute';
+// import { SessionContextProvider } from '@supabase/auth-helpers-react';
+// import { supabase } from './lib/supabase'; // Import your existing supabase client
 
 function MainLayout() {
   const { isMobile } = useMediaQuery();
@@ -41,39 +41,19 @@ export default function App() {
     return <div />;
   }
   return (
-    <SessionContextProvider supabaseClient={supabase}>
-      <div className="h-full relative overflow-auto">
-        <Routes>
-          <Route
-            element={
-              <ProtectedRoute>
-                <MainLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Conversation />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/settings" element={<Setting />} />
-          </Route>
-          <Route
-            path="/share/:identifier"
-            element={
-              <ProtectedRoute>
-                <SharedConversation />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<Auth />} />
-          <Route
-            path="/*"
-            element={
-              <ProtectedRoute>
-                <PageNotFound />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </div>
-    </SessionContextProvider>
+    // <SessionContextProvider supabaseClient={supabase}>
+    <div className="h-full relative overflow-auto">
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Conversation />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/settings" element={<Setting />} />
+        </Route>
+        <Route path="/share/:identifier" element={<SharedConversation />} />
+        {/* <Route path="/login" element={<Auth />} /> */}
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
+    </div>
+    // </SessionContextProvider>
   );
 }
