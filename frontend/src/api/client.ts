@@ -1,4 +1,4 @@
-import { supabase } from '../lib/supabase';
+// import { supabase } from '../lib/supabase';
 // const baseURL = import.meta.env.VITE_API_HOST || 'https://docsapi.arc53.com';
 const baseURL = 'http://127.0.0.1:8000';
 // const baseURL ='http://inference-service.default.svc.cluster.local:8000/';
@@ -11,12 +11,12 @@ const defaultHeaders = {
   'Content-Type': 'application/json',
 };
 
-const getAuthHeader = async (): Promise<HeadersInit> => {
-  const session = await supabase.auth.getSession();
-  return session.data.session?.access_token
-    ? { Authorization: `Bearer ${session.data.session.access_token}` }
-    : {};
-};
+// const getAuthHeader = async (): Promise<HeadersInit> => {
+//   const session = await supabase.auth.getSession();
+//   return session.data.session?.access_token
+//     ? { Authorization: `Bearer ${session.data.session.access_token}` }
+//     : {};
+// };
 
 const apiClient = {
   get: async (
@@ -24,12 +24,10 @@ const apiClient = {
     headers = {},
     signal?: AbortSignal,
   ): Promise<any> => {
-    const authHeader = await getAuthHeader();
     return fetch(`${baseURL}${url}`, {
       method: 'GET',
       headers: {
         ...defaultHeaders,
-        ...authHeader,
         ...headers,
       },
       signal,
@@ -44,12 +42,10 @@ const apiClient = {
     headers = {},
     signal?: AbortSignal,
   ): Promise<any> => {
-    const authHeader = await getAuthHeader();
     return fetch(`${baseURL}${url}`, {
       method: 'POST',
       headers: {
         ...defaultHeaders,
-        ...authHeader,
         ...headers,
       },
       body: JSON.stringify(data),
@@ -65,12 +61,10 @@ const apiClient = {
     headers = {},
     signal?: AbortSignal,
   ): Promise<any> => {
-    const authHeader = await getAuthHeader();
     return fetch(`${baseURL}${url}`, {
       method: 'PUT',
       headers: {
         ...defaultHeaders,
-        ...authHeader,
         ...headers,
       },
       body: JSON.stringify(data),
@@ -85,12 +79,10 @@ const apiClient = {
     headers = {},
     signal?: AbortSignal,
   ): Promise<any> => {
-    const authHeader = await getAuthHeader();
     return fetch(`${baseURL}${url}`, {
       method: 'DELETE',
       headers: {
         ...defaultHeaders,
-        ...authHeader,
         ...headers,
       },
       signal,
