@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
+import uuid
 
 import numpy as np
 
@@ -14,6 +15,9 @@ class PdfEmbeddedChunkModel(VectorDBDataModel):
     chunk_content: str
     embedded_content: np.ndarray
     num_pages: Optional[int] 
+    document_title: str
+    generated_qeustions: List[str]
+
     type: str
 
     
@@ -29,4 +33,6 @@ class PdfEmbeddedChunkModel(VectorDBDataModel):
             "type": self.type,
         }
 
-        return self.chunk_id, self.embedded_content, data
+        # Use UUID for the point ID instead of chunk_id which might be an MD5 hash
+        point_id = str(uuid.uuid4())
+        return point_id, self.embedded_content, data

@@ -25,5 +25,9 @@ class PdfCleaningHandler(CleaningDataHandler):
             cleaned_extracted_text= clean_text("".join(data_model.extracted_text)),
             num_pages= data_model.num_pages,
             type= data_model.type,
+            document_title= data_model.document_title,
+            generated_qeustions= data_model.generated_questions,
+
+
         )
 

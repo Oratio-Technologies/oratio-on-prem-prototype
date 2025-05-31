@@ -28,6 +28,8 @@ def stream_process():
             change["fullDocument"].pop("_id")
             change["fullDocument"]["type"] = data_type
             change["fullDocument"]["entry_id"] = entry_id
+            
+            logging.info(f"Change detected: {change['operationType']} in collection {data_type} with ID {entry_id}")
 
             # Use json_util to serialize the document
             data = json.dumps(change["fullDocument"], default=json_util.default)

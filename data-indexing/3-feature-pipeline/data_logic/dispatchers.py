@@ -1,5 +1,6 @@
 from datetime import datetime
 from utils.logging import get_logger
+import uuid
 
 from data_logic.chunking_data_handlers import (
     ChunkingDataHandler,
@@ -21,35 +22,45 @@ import json
 logger = get_logger(__name__)
 
 class RawDispatcher:
-    # @staticmethod
-    # def handle_mq_message(body: bytes) -> DataModel:
-    #     try:
-    #         # Decode the message from JSON format
-    #         message = json.loads(body.decode())
-    #     except json.JSONDecodeError as e:
-    #         logger.error(f"Invalid JSON format: {e}")
-    #         raise ValueError(f"Invalid JSON format: {e}")
     @staticmethod
     def handle_mq_message(message: dict) -> DataModel:
-        data_type = message.get("type")
+        # Add detailed logging to debug the message structure
+        logger.info("Raw message received", extra={"message_keys": list(message.keys()) if isinstance(message, dict) else "not_dict", "message_type": type(message).__name__})
+        
+        data_type = message.get("data_type")
         logger.info("Received message.", extra={"data_type": data_type})
+
+        if not data_type:
+            logger.error("No data_type found in message", extra={"message": message})
+            raise ValueError("Missing data_type in message")
 
         if data_type == "pdf_documents":
             try:
+                # Parse generated_questions from string to list if needed
+                generated_questions = message.get('generated_questions', '')
+                if isinstance(generated_questions, str):
+                    # Split by newlines and filter empty lines
+                    generated_questions_list = [q.strip() for q in generated_questions.split('\n') if q.strip()]
+                else:
+                    generated_questions_list = generated_questions if isinstance(generated_questions, list) else []
+
+                # Generate a UUID for the entry_id to comply with Qdrant's point ID requirements
+                entry_id = str(uuid.uuid4())
+
                 # Create PdfRawModel instance using the message fields
                 pdf_raw_model = PdfRawModel(
-                    entry_id=message.get('entry_id'),
-                    type=message.get('type'),
-                    source=message.get('source'),
-                    extracted_text=message.get('extracted_text'),
-                    num_pages=message.get('num_pages')
+                    entry_id=entry_id,  # Use UUID instead of filename
+                    type=data_type,
+                    source=message.get('source', ''),
+                    extracted_text=message.get('extracted_text', ''),
+                    num_pages=message.get('num_pages', 1),
+                    document_title=message.get('document_title', 'Untitled Document'),
+                    generated_questions=generated_questions_list  # Fixed field name
                 )
+                logger.info("PdfRawModel created successfully", extra={"entry_id": pdf_raw_model.entry_id, "source": message.get('source', '')})
                 return pdf_raw_model
-            except KeyError as e:
-                logger.error(f"Missing key in message: {e}")
-                raise ValueError(f"Invalid message format: missing {e}")
-            except ValueError as e:
-                logger.error(f"Value error in message: {e}")
+            except Exception as e:
+                logger.error(f"Error creating PdfRawModel: {e}", extra={"message": message})
                 raise ValueError(f"Invalid message format: {e}")
         else:
             logger.error(f"Unsupported data type: {data_type}")
@@ -59,10 +70,10 @@ class RawDispatcher:
 class CleaningHandlerFactory:
     @staticmethod
     def create_handler(data_type: str) -> CleaningDataHandler:
-        if data_type == "pdf_documents":
-            return PdfCleaningHandler()
-        else:
-            raise ValueError(f"Unsupported data type: {data_type}")
+        return PdfCleaningHandler()
+        # if data_type == "pdf_documents":
+        # else:
+        #     raise ValueError(f"Unsupported data type: {data_type}")
 
 
 class CleaningDispatcher:
@@ -74,13 +85,7 @@ class CleaningDispatcher:
         handler = cls.cleaning_factory.create_handler(data_type)
         clean_model = handler.clean(data_model)
 
-        logger.info(
-            "Data cleaned successfully.",
-            extra={
-                "data_type": data_type,
-                "cleaned_content_len": len(clean_model.cleaned_extracted_text),
-            }
-        )
+
 
         return clean_model
 
@@ -88,10 +93,10 @@ class CleaningDispatcher:
 class ChunkingHandlerFactory:
     @staticmethod
     def create_handler(data_type: str) -> ChunkingDataHandler:
-        if data_type == "pdf_documents":
-            return PdfChunkingHandler()
-        else:
-            raise ValueError(f"Unsupported data type: {data_type}")
+        return PdfChunkingHandler()
+        # if data_type == "pdf_documents":
+        # else:
+        #     raise ValueError(f"Unsupported data type: {data_type}")
 
 
 class ChunkingDispatcher:
@@ -107,7 +112,6 @@ class ChunkingDispatcher:
             "Cleaned content chunked successfully.",
             extra={
                 "num_chunks": len(chunk_models),
-                "data_type": data_type,
             }
         )
 
@@ -117,10 +121,10 @@ class ChunkingDispatcher:
 class EmbeddingHandlerFactory:
     @staticmethod
     def create_handler(data_type: str) -> EmbeddingDataHandler:
-        if data_type == "pdf_documents":
-            return PdfEmbeddingHandler()
-        else:
-            raise ValueError(f"Unsupported data type: {data_type}")
+        return PdfEmbeddingHandler()
+        # if data_type == "pdf_documents":
+        # else:
+        #     raise ValueError(f"Unsupported data type: {data_type}")
 
 
 class EmbeddingDispatcher:
@@ -135,7 +139,6 @@ class EmbeddingDispatcher:
         logger.info(
             "Chunk embedded successfully.",
             extra={
-                "data_type": data_type,
                 "embedding_len": len(embedded_chunk_model.embedded_content),
             }
         )

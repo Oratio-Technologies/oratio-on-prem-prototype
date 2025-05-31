@@ -86,29 +86,32 @@ from typing import List
     
 #     return chunks
 
+def chunk_law4hack_text(list_of_questions: List[str]) -> List[str]: 
+    return list_of_questions
 
-def chunk_text(text):
-    """
-    Extract paragraphs that start with numbers from the given text.
+# def chunk_text(text):
+#     """
+#     This is for Tunisie Telecom
+#     Extract paragraphs that start with numbers from the given text. 
     
-    Args:
-        text (str): The text to process
+#     Args:
+#         text (str): The text to process
         
-    Returns:
-        list: A list of strings, each representing a numbered paragraph
-    """
-    import re
+#     Returns:
+#         list: A list of strings, each representing a numbered paragraph
+#     """
+#     import re
     
-    # Pattern to match paragraphs starting with numbers (like "01.", "1.", etc.)
-    pattern = r'(\d+\.\s+.+?(?=\d+\.\s+|\Z))'
+#     # Pattern to match paragraphs starting with numbers (like "01.", "1.", etc.)
+#     pattern = r'(\d+\.\s+.+?(?=\d+\.\s+|\Z))'
     
-    # Use re.DOTALL to match across multiple lines
-    paragraphs = re.findall(pattern, text, re.DOTALL)
+#     # Use re.DOTALL to match across multiple lines
+#     paragraphs = re.findall(pattern, text, re.DOTALL)
     
-    # Clean up paragraphs by removing extra whitespace
-    cleaned_paragraphs = [re.sub(r'\s+', ' ', p).strip() for p in paragraphs]
+#     # Clean up paragraphs by removing extra whitespace
+#     cleaned_paragraphs = [re.sub(r'\s+', ' ', p).strip() for p in paragraphs]
     
-    return cleaned_paragraphs
+#     return cleaned_paragraphs
 
 
 # if __name__ == "__main__":

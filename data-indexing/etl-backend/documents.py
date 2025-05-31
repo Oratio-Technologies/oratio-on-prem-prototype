@@ -120,6 +120,7 @@ class PdfDocument(BaseDocument):
     extracted_text: str
     source: str
     num_pages: Optional[int] 
+    document_title: str
     
     class Settings:
         name = "pdf_documents"

@@ -25,4 +25,15 @@ class Settings:
     RABBITMQ_QUEUE_NAME: str = "default"
 
 
+
+class AzureSettings:
+    AZURE_OPENAI_API_KEY: str = "mcOZ1fI1JChD4P0fyyp84wEb6dJ0iIBWaSfOALNXXWwSfjj5mM7gJQQJ99AKACHYHv6XJ3w3AAAAACOGH5AI"
+    AZURE_OPENAI_ENDPOINT: str = (
+        "https://alach-m3n4py1o-eastus2.cognitiveservices.azure.com/openai/"
+        "deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview"
+    )
+    AZURE_OPENAI_API_VERSION: str = "2024-08-01-preview"
+azure_settings = AzureSettings()
+
+
 settings = Settings()

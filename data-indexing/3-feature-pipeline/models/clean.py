@@ -1,4 +1,5 @@
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
+import uuid
 
 from models.base import VectorDBDataModel
 
@@ -7,6 +8,10 @@ class PdfCleanedModel(VectorDBDataModel):
     source: str
     cleaned_extracted_text: str
     num_pages: Optional[int] 
+    document_title: str
+    generated_qeustions: List[str]
+
+
     type: str
 
     
@@ -18,6 +23,8 @@ class PdfCleanedModel(VectorDBDataModel):
             "type": self.type,
         }
 
-        return self.entry_id, data
+        # Use UUID for the point ID instead of entry_id which might be an invalid string
+        point_id = str(uuid.uuid4())
+        return point_id, data
 
 

@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from models.base import DataModel
 from models.chunk import PdfChunkModel
 from models.clean import  PdfCleanedModel
-from utils.chunking import chunk_text
+from utils.chunking import chunk_law4hack_text
 
 
 class ChunkingDataHandler(ABC):
@@ -23,8 +23,8 @@ class PdfChunkingHandler(ChunkingDataHandler):
     def chunk(self, data_model: PdfCleanedModel) -> list[PdfChunkModel]:
         data_models_list = []
 
-        text_content = data_model.cleaned_extracted_text
-        chunks = chunk_text(text_content)
+        # text_content = data_model.cleaned_extracted_text
+        chunks = chunk_law4hack_text(data_model.generated_qeustions)
 
         for chunk in chunks:
             model = PdfChunkModel(                            
@@ -33,7 +33,10 @@ class PdfChunkingHandler(ChunkingDataHandler):
                 chunk_id=hashlib.md5(chunk.encode()).hexdigest(),
                 chunk_content=chunk,
                 num_pages= data_model.num_pages,
-                type= data_model.type    
+                type= data_model.type,
+                document_title= data_model.document_title,
+                generated_qeustions= data_model.generated_qeustions,
+
             )
             data_models_list.append(model)
         return data_models_list

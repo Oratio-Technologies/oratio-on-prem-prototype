@@ -28,5 +28,9 @@ class PdfEmbeddingHandler(EmbeddingDataHandler):
             embedded_content=embedd_text(data_model.chunk_content),
             num_pages=data_model.num_pages,
             type=data_model.type,
+            document_title= data_model.document_title,
+            generated_qeustions= data_model.generated_qeustions,
+
+
         )
 
