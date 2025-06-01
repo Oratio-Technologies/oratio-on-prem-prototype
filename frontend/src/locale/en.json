@@ -15,12 +15,12 @@
   "documentation": "Documentation",
   "demo": [
     {
-      "header": "RNE expertise in business formation, company registration, and legal entity management for all business types in Tunisia.",
-      "query": "What is RNE?"
+      "header": "Expertise RNE dans la création d'entreprises, l'immatriculation de sociétés, et la gestion d'entités juridiques pour tous types d'entreprises en Tunisie.",
+      "query": "Qu'est-ce que le RNE ?"
     },
     {
-      "header": "Specialized in over 50 different RNE operations - from sole proprietorships to corporations, associations, and public institutions.",
-      "query": "Summarize current context"
+      "header": "Spécialisé dans plus de 50 opérations RNE différentes - des entreprises individuelles aux sociétés, associations, et institutions publiques.",
+      "query": "Résumez le contexte actuel"
     }
   ],
   "settings": {
