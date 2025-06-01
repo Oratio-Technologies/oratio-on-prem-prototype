@@ -13,9 +13,10 @@ from app.schemas.answer import AnswerRequest, AnswerResponse, Source
 
 from app.retriever.classic_rag import AccountantsRAG
 
-
 # Initialize logger
 logger = logging.getLogger(__name__)
+
+
 
 # Load prompt template
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
