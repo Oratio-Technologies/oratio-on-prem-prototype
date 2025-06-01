@@ -1,3 +1,7 @@
+import sys
+sys.path.insert(0, "/home/mohamed-ayari/projects/oratio/oratio-on-prem-prototype/backend")
+
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 

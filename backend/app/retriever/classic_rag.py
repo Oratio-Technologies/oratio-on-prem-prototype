@@ -1,3 +1,6 @@
+from typing import List, Dict, Tuple, Any, Set
+
+
 from app.retriever.base import BaseRetriever
 from app.vectorstore.qdrant import VectorRetriever
 from app.llm.openai import OpenAILLM
@@ -40,7 +43,29 @@ class AccountantsRAG(BaseRetriever):
         # self.gpt_model = gpt_model
         
         # self.user_api_key = user_api_key
+
+
+    def _deduplicate_docs(self, docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Remove duplicate documents based on their text content.
         
+        :param docs: List of document dictionaries
+        :return: Deduplicated list of documents
+        """
+        seen_texts: Set[str] = set()
+        deduplicated_docs = []
+        
+        for doc in docs:
+            # Create a normalized version of the text for comparison
+            text = doc["text"].strip()
+            if not text or text in seen_texts:
+                continue
+                
+            seen_texts.add(text)
+            deduplicated_docs.append(doc)
+            
+        return deduplicated_docs
+
     async def _get_data(self):
         if self.chunks == 0:
             return []
@@ -53,28 +78,42 @@ class AccountantsRAG(BaseRetriever):
         mongo_docs = []
 
         # Determine which collection to use based on law type
-        collection_name = mongodb_settings.mongodb_settings
+        collection_name = mongodb_settings.JUSTICE_COLLECTION_NAME
         
         # Fetch documents from MongoDB
         for doc_id in mongo_ids:
             fetched_doc = await read_mongo_data(collection_name, doc_id)
             if fetched_doc:  # Only append if document was found
                 mongo_docs.append(fetched_doc)
-
+                
+        metaprompt_list = []
+        docs = []
         
-        docs = [
-            {
-                "title": doc.payload.get("document_title", "Untitled").split("/")[-1],
-                "text": doc.payload.get("extracted_text", ""),
-                "source": doc.payload.get("source", "local"),
-            }
-            for doc in docs_temp
-        ]
-        return docs
+        for doc in mongo_docs:
+            metaprompt_list.append(
+                {
+                    
+                    "extracted_text": doc.get("extracted_text", ""),
+                }
+            )
+        
+        
+            docs.append(
+                {
+                "title": doc.get("document_title", "Untitled").split("/")[-1],
+                "text": doc.get("document_title"),
+                "source": doc.get("source", "local"),
+
+            })
+        
+        return docs, metaprompt_list
+    
     
     async def gen(self):
-        docs = await self._get_data()
-        docs_together = "\n\n\n".join([doc["text"] for doc in docs])
+        docs, metaprompt_list = await self._get_data()
+        docs_together = "\n\n\n".join([doc["extracted_text"] for doc in metaprompt_list])
+        
+        logger.info(f"docs_together: {docs_together[:1000]}...")  # Log first 1000 characters for brevity
         p_chat_combine = self.prompt.replace("{summaries}", docs_together)
         messages_combine = [{"role": "system", "content": p_chat_combine}]
         
@@ -98,7 +137,7 @@ class AccountantsRAG(BaseRetriever):
         # print("\n\n")
 
         completion = llm.gen(model="chat", messages=messages_combine)
-        print(completion)
-        print("\n\n")
+        # print(completion)
+        # print("\n\n")
 
         return completion, docs

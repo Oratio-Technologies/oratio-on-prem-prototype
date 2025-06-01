@@ -1,5 +1,5 @@
-import sys
-sys.path.insert(0, "/home/mohamed-ayari/projects/oratio/law-chatbot/backend")
+# import sys
+# sys.path.insert(0, "/home/mohamed-ayari/projects/oratio/oratio-on-prem-prototype/backend")
 
 
 from datetime import datetime
@@ -151,7 +151,7 @@ async def read_mongo_data(collection_name, mongo_id):
     try:
         # Connect to MongoDB using Motor
         client = AsyncIOMotorClient(mongodb_settings.MONGODB_URL)
-        db = client[mongodb_settings.LAW_DB_NAME]
+        db = client[mongodb_settings.JUSTICE_DB_NAME]
         
         # Get the specified collection
         collection = db[collection_name]

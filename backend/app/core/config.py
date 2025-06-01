@@ -48,9 +48,13 @@ class MongoDBSettings(Settings):
     # MONGODB_COLLECTION_NAME: Optional[str] = "prod_conversations"
     MONGODB_DB_NAME: str = "beta-testing-db"
     MONGODB_COLLECTION_NAME: Optional[str] = "conversations_collection"
+    
     # This DB and collections are for law data
     JUSTICE_DB_NAME: str = "production"
     JUSTICE_COLLECTION_NAME: str = "pdf_documents"
+    
+    
+    
 class QdrantSettings(Settings):
     USE_QDRANT_CLOUD: bool = False
     QDRANT_DATABASE_HOST: str = "72.144.114.98"
