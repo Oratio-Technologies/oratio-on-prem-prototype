@@ -22,6 +22,7 @@ class PdfEmbeddingHandler(EmbeddingDataHandler):
     def embedd(self, data_model: PdfChunkModel) -> PdfEmbeddedChunkModel:
         return PdfEmbeddedChunkModel(
             entry_id=data_model.entry_id,
+            mongo_id= data_model.mongo_id,
             source=data_model.source,
             chunk_id=data_model.chunk_id,
             chunk_content=data_model.chunk_content,
@@ -29,7 +30,7 @@ class PdfEmbeddingHandler(EmbeddingDataHandler):
             num_pages=data_model.num_pages,
             type=data_model.type,
             document_title= data_model.document_title,
-            generated_qeustions= data_model.generated_qeustions,
+            generated_questions= data_model.generated_questions,  # Fixed field name
 
 
         )

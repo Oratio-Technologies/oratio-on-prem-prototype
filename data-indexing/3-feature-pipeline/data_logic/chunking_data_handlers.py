@@ -24,24 +24,25 @@ class PdfChunkingHandler(ChunkingDataHandler):
         data_models_list = []
 
         # text_content = data_model.cleaned_extracted_text
-        chunks = chunk_law4hack_text(data_model.generated_qeustions)
+        chunks = chunk_law4hack_text(data_model.generated_questions)  # Fixed field name
 
         for chunk in chunks:
             model = PdfChunkModel(                            
                 entry_id= data_model.entry_id,
+                mongo_id= data_model.mongo_id,
                 source= data_model.source,
                 chunk_id=hashlib.md5(chunk.encode()).hexdigest(),
                 chunk_content=chunk,
                 num_pages= data_model.num_pages,
                 type= data_model.type,
                 document_title= data_model.document_title,
-                generated_qeustions= data_model.generated_qeustions,
+                generated_questions= data_model.generated_questions,  # Fixed field name
 
             )
             data_models_list.append(model)
         return data_models_list
-            
-            
+
+
 
 
 

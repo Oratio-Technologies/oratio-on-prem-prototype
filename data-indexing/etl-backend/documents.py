@@ -119,7 +119,7 @@ class BaseDocument(BaseModel):
 class PdfDocument(BaseDocument):
     extracted_text: str
     source: str
-    num_pages: Optional[int] 
+    num_pages: Optional[int] =1
     document_title: str
     
     class Settings:

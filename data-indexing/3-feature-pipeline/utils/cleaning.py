@@ -96,12 +96,12 @@ def remove_non_ascii(text: str) -> str:
 
 
 def clean_text(text_content: str) -> str:
-    cleaned_text = unbold_text(text_content)
-    cleaned_text = unitalic_text(cleaned_text)
-    cleaned_text = remove_emojis_and_symbols(cleaned_text)
-    cleaned_text = clean(cleaned_text)
-    cleaned_text = replace_unicode_quotes(cleaned_text)
-    cleaned_text = clean_non_ascii_chars(cleaned_text)
-    cleaned_text = replace_urls_with_placeholder(cleaned_text)
+    # cleaned_text = unbold_text(text_content)
+    # cleaned_text = unitalic_text(cleaned_text)
+    # cleaned_text = remove_emojis_and_symbols(cleaned_text)
+    # cleaned_text = clean(cleaned_text)
+    # cleaned_text = replace_unicode_quotes(cleaned_text)
+    # cleaned_text = clean_non_ascii_chars(cleaned_text)
+    # cleaned_text = replace_urls_with_placeholder(cleaned_text)
 
-    return cleaned_text
+    return text_content

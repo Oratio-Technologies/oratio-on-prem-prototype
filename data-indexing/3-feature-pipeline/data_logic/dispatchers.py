@@ -37,7 +37,7 @@ class RawDispatcher:
         if data_type == "pdf_documents":
             try:
                 # Parse generated_questions from string to list if needed
-                generated_questions = message.get('generated_questions', '')
+                generated_questions = message.get('generated_questions')
                 if isinstance(generated_questions, str):
                     # Split by newlines and filter empty lines
                     generated_questions_list = [q.strip() for q in generated_questions.split('\n') if q.strip()]
@@ -50,6 +50,7 @@ class RawDispatcher:
                 # Create PdfRawModel instance using the message fields
                 pdf_raw_model = PdfRawModel(
                     entry_id=entry_id,  # Use UUID instead of filename
+                    mongo_id=message.get('mongo_id', ''),
                     type=data_type,
                     source=message.get('source', ''),
                     extracted_text=message.get('extracted_text', ''),

@@ -45,7 +45,7 @@ async def process_pdf_file(file: UploadFile = File(...), document_name: str = Fo
             extracted_text=extracted_text,
             source=file.filename,
             num_pages=number_of_pages,
-            document_title=document_name
+            document_name=document_name
         )
 
         result = document.save()

@@ -57,6 +57,7 @@ def stream_process():
             
             # Prepare document for messaging with the required schema
             queue_data = {
+                "mongo_id": str(entry_id),  # Add the MongoDB ObjectId as string
                 "extracted_text": doc.get("extracted_text", ""),
                 "source": doc.get("source", ""),
                 "num_pages": doc.get("num_pages", 1),

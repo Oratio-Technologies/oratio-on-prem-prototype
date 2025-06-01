@@ -9,6 +9,7 @@ from models.base import VectorDBDataModel
 
 
 class PdfEmbeddedChunkModel(VectorDBDataModel):
+    mongo_id: str
     entry_id: str
     source: str
     chunk_id: str
@@ -16,7 +17,7 @@ class PdfEmbeddedChunkModel(VectorDBDataModel):
     embedded_content: np.ndarray
     num_pages: Optional[int] 
     document_title: str
-    generated_qeustions: List[str]
+    generated_questions: List[str]  # Fixed typo: "questions" instead of "qeustions"
 
     type: str
 
@@ -26,6 +27,7 @@ class PdfEmbeddedChunkModel(VectorDBDataModel):
 
     def to_payload(self) -> Tuple[str, np.ndarray, dict]:
         data = {
+            "mongo_id": self.mongo_id,
             "id": self.entry_id,
             "source": self.source,
             "content": self.chunk_content,
