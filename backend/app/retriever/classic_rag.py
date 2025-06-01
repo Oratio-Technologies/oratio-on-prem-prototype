@@ -6,7 +6,7 @@ from app.llm.openai import OpenAILLM
 from app.core.config import mongodb_settings
 from app.core.mongo import read_mongo_data
 from app.utils.custom_logging import get_logger
-
+from app.utils.helpers import process_history
 logger = get_logger("classic_rag")
 
 
@@ -294,6 +294,18 @@ class AccountantsRAG(BaseRetriever):
         
         p_chat_combine = self.prompt.replace("{summaries}", docs_together)
         messages_combine = [{"role": "system", "content": p_chat_combine}]
+       
+        # Process history
+        processed_history = process_history(self.chat_history)
+        if processed_history:
+            for user_msg, bot_msg in processed_history:
+                messages_combine.extend([
+                    {"role": "user", "content": user_msg},
+                    {"role": "system", "content": bot_msg},
+                ])
+       
+       
+       
         messages_combine.append({"role": "user", "content": self.question})
         
         logger.info(f"messages_combine: {messages_combine[:-2]}")
