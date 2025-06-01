@@ -2,7 +2,8 @@ from app.retriever.base import BaseRetriever
 from app.vectorstore.qdrant import VectorRetriever
 from app.llm.openai import OpenAILLM
 
-
+from app.core.config import mongodb_settings
+from app.core.mongo import  read_mongo_data
 from app.utils.custom_logging import get_logger
 
 logger = get_logger("classic_rag")
@@ -47,11 +48,25 @@ class AccountantsRAG(BaseRetriever):
         retriever = VectorRetriever()
         docs_temp = retriever.search(self.question, k=self.chunks)
         
+
+        mongo_ids = [doc.payload.get("mongo_id") for doc in docs_temp]
+        mongo_docs = []
+
+        # Determine which collection to use based on law type
+        collection_name = mongodb_settings.mongodb_settings
+        
+        # Fetch documents from MongoDB
+        for doc_id in mongo_ids:
+            fetched_doc = await read_mongo_data(collection_name, doc_id)
+            if fetched_doc:  # Only append if document was found
+                mongo_docs.append(fetched_doc)
+
+        
         docs = [
             {
-                "title": doc.payload.get("platform", "Untitled").split("/")[-1],
-                "text": doc.payload.get("content", ""),
-                "source": doc.payload.get("link", "local"),
+                "title": doc.payload.get("document_title", "Untitled").split("/")[-1],
+                "text": doc.payload.get("extracted_text", ""),
+                "source": doc.payload.get("source", "local"),
             }
             for doc in docs_temp
         ]
@@ -59,7 +74,7 @@ class AccountantsRAG(BaseRetriever):
     
     async def gen(self):
         docs = await self._get_data()
-        docs_together = "\n".join([doc["text"] for doc in docs])
+        docs_together = "\n\n\n".join([doc["text"] for doc in docs])
         p_chat_combine = self.prompt.replace("{summaries}", docs_together)
         messages_combine = [{"role": "system", "content": p_chat_combine}]
         
