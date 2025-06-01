@@ -6,7 +6,7 @@
   "myPlan": "Mein Plan",
   "about": "Über",
   "inputPlaceholder": "Geben Sie hier Ihre Nachricht ein...",
-  "tagline": "Oratio verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen.",
+  "tagline": "RNE verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen.",
   "sourceDocs": "Quelle",
   "none": "Keine",
   "cancel": "Abbrechen",
@@ -15,11 +15,11 @@
   "documentation": "Dokumentation",
   "demo": [
     {
-      "header": "⚠ Beta-Version: Dieser Chatbot befindet sich noch in der Beta-Testphase.",
-      "query": "Was ist Oratio?"
+      "header": "RNE-Expertise: Unternehmensgründung, Gesellschaftsregistrierung und Rechtsentitätsverwaltung für alle Unternehmensformen in Tunesien",
+      "query": "Was ist RNE?"
     },
     {
-      "header": "⚠ Haftungsausschluss Keine Rechtsberatung: Oratio ist eine KI und bietet keine Rechtsberatung. Wenn Sie rechtliche Hilfe benötigen, wenden Sie sich bitte an einen Anwalt.",
+      "header": "Spezialisiert auf über 50 verschiedene RNE-Operationen - von Einzelunternehmen bis zu Aktiengesellschaften, Vereinen und öffentlichen Einrichtungen",
       "query": "Fassen Sie den aktuellen Kontext zusammen"
     }
   ],
@@ -70,7 +70,7 @@
   "modals": {
     "uploadDoc": {
       "label": "Neue Dokumentation hochladen",
-      "select": "Wählen Sie aus, wie Sie Ihr Dokument in Oratio hochladen möchten",
+      "select": "Wählen Sie aus, wie Sie Ihr Dokument in RNE hochladen möchten",
       "file": "Vom Gerät hochladen",
       "back": "Zurück",
       "wait": "Bitte warten ...",
@@ -121,8 +121,8 @@
   },
   "sharedConv": {
     "subtitle": "Erstellt mit",
-    "button": "Starten Sie mit Oratio",
-    "meta": "Oratio verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen."
+    "button": "Starten Sie mit RNE",
+    "meta": "RNE verwendet GenAI, bitte überprüfen Sie kritische Informationen anhand von Quellen."
   },
   "convTile": {
     "share": "Teilen",

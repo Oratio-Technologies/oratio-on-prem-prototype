@@ -7,8 +7,8 @@ export default function About() {
     <div className="mx-5 grid min-h-screen md:mx-36">
       <article className="place-items-left mx-auto my-auto flex w-full max-w-6xl flex-col gap-4 rounded-3xl bg-gray-100 p-6 text-jet dark:bg-gun-metal dark:text-bright-gray lg:p-6 xl:p-10">
         <div className="flex items-center">
-          <p className="mr-2 text-3xl">About Oratio</p>
-          <img className="h14 mb-2" src={Oratio} alt="Oratio" />
+          <p className="mr-2 text-3xl">About RNE</p>
+          <img className="h14 mb-2" src={Oratio} alt="RNE" />
         </div>
         <p className="mt-4">
           Find the information in your documentation through AI-powered

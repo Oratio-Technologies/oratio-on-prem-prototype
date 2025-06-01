@@ -24,8 +24,8 @@ export default function Hero({
     >
       <div className="flex h-full w-full flex-col items-center justify-center">
         <div className="flex items-center">
-          <img className="mb-1 inline w-14 p-0" src={Oratio} alt="Oratio" />
-          <span className="p-0 text-4xl font-semibold">Oratio</span>
+          <img className="mb-1 inline w-14 p-0" src={Oratio} alt="RNE" />
+          <span className="p-0 text-4xl font-semibold">Assistant RNE</span>
         </div>
 
         <div className="mb-4 flex flex-col items-center justify-center dark:text-white"></div>

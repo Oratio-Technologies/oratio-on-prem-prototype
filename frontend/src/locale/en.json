@@ -15,11 +15,11 @@
   "documentation": "Documentation",
   "demo": [
     {
-      "header": "⚠ Beta version: This chatbot is still in the beta testing phase.",
-      "query": "What is Oratio?"
+      "header": "RNE expertise in business formation, company registration, and legal entity management for all business types in Tunisia.",
+      "query": "What is RNE?"
     },
     {
-      "header": "⚠ Disclaimer: Oratio is an AI and does not provide legal counseling. If you seek legal help, please reach out to an attorney.",
+      "header": "Specialized in over 50 different RNE operations - from sole proprietorships to corporations, associations, and public institutions.",
       "query": "Summarize current context"
     }
   ],

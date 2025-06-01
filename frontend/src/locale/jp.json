@@ -15,7 +15,7 @@
   "documentation": "ドキュメント",
   "demo": [
     {
-      "header": "Oratioについて学ぶ",
+      "header": "RNEについて学ぶ",
       "query": "Oratioとは何ですか?"
     },
     {
@@ -129,8 +129,8 @@
   },
   "sharedConv": {
     "subtitle": "作成者",
-    "button": "Oratio を始める",
-    "meta": "Oratio は GenAI を使用しています、情報源を使用して重要情報を確認してください。"
+    "button": "RNE を始める",
+    "meta": "RNE は GenAI を使用しています、情報源を使用して重要情報を確認してください。"
   },
   "convTile": {
     "share": "共有",

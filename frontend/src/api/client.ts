@@ -1,9 +1,9 @@
 // import { supabase } from '../lib/supabase';
 // const baseURL = import.meta.env.VITE_API_HOST || 'https://docsapi.arc53.com';
-const baseURL = 'http://127.0.0.1:8000';
+// const baseURL = 'http://127.0.0.1:8000';
 
 // const baseURL = 'https://chat.oratiotechnologies.com';
-// const baseURL = 'http://131.189.250.147:8000';
+const baseURL = 'http://131.189.250.147:8000';
 const defaultHeaders = {
   'Content-Type': 'application/json',
 };

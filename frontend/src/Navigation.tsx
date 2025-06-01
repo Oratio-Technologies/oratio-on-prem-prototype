@@ -267,7 +267,7 @@ export default function Navigation({ navOpen, setNavOpen }: NavigationProps) {
           >
             <a href="/" className="flex gap-1.5">
               <img className="mt-2 mb-2 h-10" src={Oratio} alt="" />
-              <p className="my-auto text-2xl font-semibold">Oratio</p>
+              <p className="my-auto text-2xl font-semibold">Assistant RNE</p>
             </a>
           </div>
           <button
