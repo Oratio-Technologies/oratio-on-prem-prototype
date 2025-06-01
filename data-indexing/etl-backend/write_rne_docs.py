@@ -7,6 +7,7 @@ from typing import Dict, Optional
 from pathlib import Path
 from documents import PdfDocument
 from services.pdf_processing import extract_text_from_pdf
+from rne_dict import rne_operations_combined
 
 def process_pdf_files_to_documents(folder_path: str, rne_operations: Dict[str, str]) -> Optional[int]:
     """
@@ -89,19 +90,19 @@ def process_pdf_files_to_documents(folder_path: str, rne_operations: Dict[str, s
 # Example usage:
 if __name__ == "__main__":
     # Define the RNE operations dictionary
-    rne_operations_1 = {
-        "RNE C 001": "Création d'une personne physique commerçant en tant que personne physique.",
-        "RNE C 002": "Création d'une personne physique artisan en tant que personne physique.",
-        "RNE C 003": "Création d'une personne physique professionnel en tant que personne physique.",
-        "RNE C 004": "Création d'une société anonyme en tant que personne morale.",
-        "RNE C 005": "Création d'un groupement d'intérêt économique en tant que personne morale.",
-        "RNE C 006": "Création d'un établissement stable en tant que personne morale.",
-        "RNE C 007": "Création d'une succursale d'une société étrangère en tant que personne morale.",
-        "RNE C 008": "Création d'un établissement public en tant que personne morale.",
-        "RNE C 009": "Création d'un réseau d'associations en tant que personne morale.",
-        "RNE C 010.1": "Création d'une association tunisienne régie par le décret-loi n° 88/2011 en tant que personne morale."
-    }
+    # rne_operations_1 = {
+    #     "RNE C 001": "Création d'une personne physique commerçant en tant que personne physique.",
+    #     "RNE C 002": "Création d'une personne physique artisan en tant que personne physique.",
+    #     "RNE C 003": "Création d'une personne physique professionnel en tant que personne physique.",
+    #     "RNE C 004": "Création d'une société anonyme en tant que personne morale.",
+    #     "RNE C 005": "Création d'un groupement d'intérêt économique en tant que personne morale.",
+    #     "RNE C 006": "Création d'un établissement stable en tant que personne morale.",
+    #     "RNE C 007": "Création d'une succursale d'une société étrangère en tant que personne morale.",
+    #     "RNE C 008": "Création d'un établissement public en tant que personne morale.",
+    #     "RNE C 009": "Création d'un réseau d'associations en tant que personne morale.",
+    #     "RNE C 010.1": "Création d'une association tunisienne régie par le décret-loi n° 88/2011 en tant que personne morale."
+    # }
     
     # Process PDF files
     folder_directory = "/home/mohamed-ayari/Downloads/hack4justice/test"
-    process_pdf_files_to_documents(folder_directory, rne_operations_1)
+    process_pdf_files_to_documents(folder_directory, rne_operations_combined)

@@ -1,0 +1,116 @@
+rne_operations_combined = {
+    # From rne_operations_1
+    "RNE C 001": "Création d'une personne physique commerçant en tant que personne physique.",
+    "RNE C 002": "Création d'une personne physique artisan en tant que personne physique.",
+    "RNE C 003": "Création d'une personne physique professionnel en tant que personne physique.",
+    "RNE C 004": "Création d'une société anonyme en tant que personne morale.",
+    "RNE C 005": "Création d'un groupement d'intérêt économique en tant que personne morale.",
+    "RNE C 006": "Création d'un établissement stable en tant que personne morale.",
+    "RNE C 007": "Création d'une succursale d'une société étrangère en tant que personne morale.",
+    "RNE C 008": "Création d'un établissement public en tant que personne morale.",
+    "RNE C 009": "Création d'un réseau d'associations en tant que personne morale.",
+    "RNE C 010.1": "Création d'une association tunisienne régie par le décret-loi n° 88/2011 en tant que personne morale.",
+    
+    # From rne_operations_2
+    "RNE C 010.2": "Création d'une association tunisienne régie par des réglementations particulières en tant que personne morale.",
+    "RNE C 011.1": "Création d'une filiale d'une association étrangère régie par le décret-loi n° 88/2011 en tant que personne morale.",
+    "RNE C 011.2": "Création d'une filiale d'une association étrangère régie par des réglementations particulières en tant que personne morale.",
+    "RNE C 012": "Création d'une Sarl, Suarl, société en nom collectif, société en commandite par actions, société en commandite simple ou société civile en tant que personne morale.",
+    "RNE C 013": "Création d'un syndicat des propriétaires en tant que personne morale.",
+    "RNE C 015": "Création d'une société mutuelle de services agricoles en tant que personne morale.",
+    "RNE C 016": "Création d'associations mutuelles en tant que personne morale.",
+    "RNE C 017": "Création d'un centre d'affaires d'intérêt public économique en tant que personne morale.",
+    "RNE C 018": "Création d'un groupement de développement dans le secteur de l'agriculture et de la pêche en tant que personne morale.",
+    "RNE C 019": "Création de centres techniques dans les secteurs industriels ou agricoles en tant que personne morale.",
+    
+    # From rne_operations_3
+    "RNE C 020": "Création d'un groupement de médecine du travail en tant que personne morale.",
+    "RNE C 021": "Création d'un groupement interprofessionnel dans le secteur agricole et agro-alimentaire en tant que personne morale.",
+    "RNE C 022": "Création d'un groupement de maintenance et de gestion des zones industrielles en tant que personne morale.",
+    "RNE C 023": "Création d'une société civile professionnelle en tant que personne morale.",
+    "RNE C 024": "Création d'une société mutuelle d'assurances en tant que personne morale.",
+    "RNE C 025": "Création d'une coopérative en tant que personne morale.",
+    "RNE C 026": "Création d'un syndicat professionnel en tant que personne morale.",
+    "RNE C 027": "Création d'un parti politique en tant que personne morale.",
+    "RNE C 028": "Création d'une société citoyenne locale ou régionale en tant que personne morale.",
+    "RNE I 001": "Création de tout type d'entreprise en tant que personne morale.",
+    
+    # From rne_operations_4
+    "RNE I 002": "Création de tout type d'entreprise en tant que personne physique.",
+    "RNE M 001.01": "Changement ou ajout du nom commercial ou de l'enseigne pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.02": "Transfert du siège ou de filiale pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.03": "Mise à jour de l'activité du siège ou de filiale pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.04": "Ouverture d'une filiale pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.05": "Fermeture d'une filiale pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.06": "Dépôt des états financiers pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.07": "Changement de l'état civil pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.08": "Cessation temporaire de l'activité pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    "RNE M 001.09": "Reprise de l'activité pour un commerçant, artisan ou professionnel en tant que personne physique.",
+    
+    # From rne_operations_5
+    "RNE M 001.10": "Déclaration ou renouvellement de la déclaration du maintien provisoire de l'immatriculation suite au décès de l'immatriculé (personne physique, commerçant/artisan/professionnel).",
+    "RNE M 001.11": "Radiation de l'immatriculé suite à la cessation définitive de l'activité (version avec renouvellement possible – personne physique).",
+    "RNE M 001.12": "Radiation de l'immatriculé suite à la cessation définitive de l'activité (version sans renouvellement – personne physique).",
+    "RNE M 002.01": "Désignation des dirigeants pour un établissement public (personne morale).",
+    "RNE M 002.02": "Désignation, changement ou renouvellement du mandat du réviseur aux comptes pour un établissement public.",
+    "RNE M 002.03": "Transfert du siège pour un établissement public.",
+    "RNE M 002.04": "Dépôt des états financiers pour un établissement public.",
+    "RNE M 003.01": "Dépôt des états financiers pour une association.",
+    "RNE M 003.02": "Désignation, changement ou renouvellement du mandat du commissaire aux comptes pour une association.",
+    "RNE M 003.03": "Désignation ou changement des dirigeants pour une association.",
+    
+    # From rne_operations_6
+    "RNE M 003.04": "Transfert du siège ou de filiale pour une association (personne morale).",
+    "RNE M 003.05": "Changement du nom de l'association (personne morale).",
+    "RNE M 003.06": "Changement des objectifs d'une association (personne morale).",
+    "RNE M 003.07": "Mise à jour des statuts d'une association (personne morale).",
+    "RNE M 003.08.01": "Ouverture d'une filiale par une association (personne morale).",
+    "RNE M 003.08.02": "Fermeture d'une filiale par une association (personne morale).",
+    "RNE M 003.09": "Fusion d'associations (personne morale).",
+    "RNE M 003.10": "Dissolution ou liquidation d'une association (personne morale).",
+    "RNE M 003.11": "Radiation d'une association du registre (personne morale).",
+    "RNE M 004.01": "Changement de dénomination sociale, nom commercial ou enseigne pour une société (personne morale).",
+    
+    # From rne_operations_7
+    "RNE M 004.02": "Mise à jour de l'activité d'une société (personne morale).",
+    "RNE M 004.03": "Transfert du siège social d'une société (personne morale).",
+    "RNE M 004.04": "Ouverture d'une filiale par une société (personne morale) - frais de 50 TND.",
+    "RNE M 004.05": "Ouverture d'une filiale par une société (personne morale) - frais de 20 TND.",
+    "RNE M 004.06": "Changement d'adresse d'une filiale d'une société (personne morale).",
+    "RNE M 004.07": "Désignation, changement ou renouvellement du mandat des dirigeants d'une société (personne morale).",
+    "RNE M 004.08": "Désignation, changement ou renouvellement du mandat du commissaire aux comptes d'une société (personne morale).",
+    "RNE M 004.09": "Dépôt des états financiers d'une société (personne morale).",
+    "RNE M 004.10": "Dépôt des états financiers consolidés d'une société (personne morale).",
+    "RNE M 004.11": "Mise à jour des associés ou actionnaires d'une société (personne morale).",
+    
+    # From rne_operations_8
+    "RNE M 004.12": "Cession des parts/actions dans une société (personne morale).",
+    "RNE M 004.13": "Transformation de la forme juridique d'une société (personne morale).",
+    "RNE M 004.14": "Augmentation du capital pour les SARL et sociétés de personnes.",
+    "RNE M 004.15": "Dépôt du rapport du commissaire aux apports en nature en cas d'augmentation du capital.",
+    "RNE M 004.17": "Augmentation du capital pour les sociétés anonymes.",
+    "RNE M 004.18": "Augmentation du capital pour les sociétés civiles.",
+    "RNE M 004.19": "Réduction du capital pour les sociétés anonymes.",
+    "RNE M 004.20": "Réduction du capital pour les sociétés civiles.",
+    "RNE M 004.21": "Réduction du capital pour les SARL et sociétés de personnes.",
+    "RNE M 004.22": "Dépôt du projet de fusion des sociétés.",
+    
+    # From rne_operations_9
+    "RNE M 004.23": "Fusion des sociétés (personne morale).",
+    "RNE M 004.24": "Dépôt du projet de scission des sociétés.",
+    "RNE M 004.25": "Scission des sociétés.",
+    "RNE M 004.26": "Ajout ou changement du compte bancaire d'une société.",
+    "RNE M 004.27": "Dépôt d'un contrat d'achat, location, ou gérance libre d'un fonds de commerce.",
+    "RNE M 004.28": "Cessation temporaire ou reprise de l'activité de la société.",
+    "RNE M 004.29": "Prorogation de la durée de la société.",
+    "RNE M 004.30": "Changement de la date de clôture de l'exercice comptable.",
+    "RNE M 004.31": "Dissolution et liquidation de la société.",
+    "RNE M 004.32": "Désignation, renouvellement, ou changement du mandat du liquidateur.",
+    
+    # From rne_operations_10
+    "RNE M 004.33": "Dépôt d'une autorisation d'agir en faveur de l'un des liquidateurs en cas de pluralité.",
+    "RNE M 004.34": "Dépôt des états financiers de liquidation.",
+    "RNE M 004.35": "Avis de clôture de la liquidation.",
+    "RNE M 004.36": "Radiation du registre après clôture de la liquidation.",
+    "RNE M 004.37": "Dépôt du procès-verbal d'approbation des états financiers."
+}
