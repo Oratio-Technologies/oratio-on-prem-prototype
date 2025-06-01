@@ -12,7 +12,7 @@ from app.schemas.answer import AnswerRequest, AnswerResponse, Source
 # from app.dependencies.token import verify_token_usage, TokenUsage
 
 from app.retriever.classic_rag import AccountantsRAG
-
+from app.core.db import save_conversation
 # Initialize logger
 logger = logging.getLogger(__name__)
 
@@ -21,6 +21,9 @@ logger = logging.getLogger(__name__)
 # Load prompt template
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROMPTS_DIR = os.path.join(CURRENT_DIR, "../prompts")
+
+AZURE_USER_ID = "azure_user_id"
+
 
 try:
     with open(os.path.join(PROMPTS_DIR, "chat_combine_default.txt"), "r") as file:
@@ -63,6 +66,14 @@ async def answer_endpoint(
         )
         answer, docs = await retriever.gen()
         
+        conversation_id = await save_conversation(
+            answer_request.conversation_id,
+            answer_request.question,
+            answer,
+            docs,
+            AZURE_USER_ID 
+
+        )
 
 
         return AnswerResponse(
@@ -74,7 +85,7 @@ async def answer_endpoint(
                     metadata=doc.get("metadata", {})
                 ) for doc in docs
             ],
-            conversation_id="fake_conversation_id",  # Placeholder for conversation ID
+            conversation_id=str(conversation_id),  # Placeholder for conversation ID
         )
         
     except HTTPException as e:
